@@ -1,0 +1,37 @@
+﻿@model StoreFrontLab.UI.MVC.Models.RoleViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-10 offset-1 custom-formatting">
+        <div class="form-horizontal">
+            <h4>Add Role</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class=" no-color">
+                    <input type="submit" value="Create" class="btn btn-outline-success" />
+                    <div class="float-right" style="margin-top: 15px;">@Html.ActionLink("Back to List", "Index")</div>
+                </div>
+            </div>
+        </div>
+        </div>
+        }
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

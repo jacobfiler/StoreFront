@@ -1,0 +1,75 @@
+﻿@model StoreFrontLab.DATA.EF.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="col-md-10 offset-1 custom-formatting">
+    <h4>@Html.DisplayFor(model => model.ProductName)</h4>
+    <p>
+        @using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { @productID = Model.ProductID }))
+        {
+            @Html.HiddenFor(x=>x.ProductID)
+            <span class="col-form-label">Quantity: </span>
+            @Html.TextBox("Qty", 1, new {  @class = "form-control", @style = " max-width: 50px; display:inline;" })
+            <input type="" value="(under construction)" class="btn btn-outline-success" name="qty"/>
+        }
+    </p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductType1.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductType1.TypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor.VendorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor.VendorName)
+        </dd>
+
+    </dl>
+    <p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+</div>
+

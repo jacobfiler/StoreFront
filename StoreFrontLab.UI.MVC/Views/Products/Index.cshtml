@@ -1,0 +1,91 @@
+﻿@model IEnumerable<StoreFrontLab.DATA.EF.Product>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+
+
+<div class="col-md-10 offset-1 custom-formatting">
+    <div class="col-md-12">
+        @if (User.IsInRole("Admin"))
+        {<p>@Html.ActionLink("Create New", "Create")</p>}
+            
+        
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductImage)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductType1.TypeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Vendor.VendorName)
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Details", new { id = item.ProductID })">
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductImage)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductType1.TypeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Vendor.VendorName)
+                        </td>
+
+                        <td>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Vendor"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) @:|
+                            }
+                            @Html.ActionLink("Details", "Details", new { id = item.ProductID })
+                            @if (User.IsInRole("Admin") || User.IsInRole("Vendor"))
+                            {
+                               @: |  @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+                            }
+                            </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+            responsive: true
+        });
+    </script>
+}

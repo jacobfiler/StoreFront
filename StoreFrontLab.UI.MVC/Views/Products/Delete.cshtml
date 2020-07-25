@@ -1,0 +1,70 @@
+﻿@model StoreFrontLab.DATA.EF.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="col-md-10 offset-1 custom-formatting">
+    <h4>Delete @Html.DisplayFor(model => model.ProductName)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductType1.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductType1.TypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor.VendorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor.VendorName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class=" no-color">
+            <input type="submit" value="Delete" class="btn btn-outline-danger" />
+            <div class="float-right">@Html.ActionLink("Back to List", "Index")</div>
+        </div>
+    }
+</div>

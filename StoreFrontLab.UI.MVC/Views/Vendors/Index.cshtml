@@ -1,0 +1,67 @@
+﻿@*@model IEnumerable<StoreFrontLab.DATA.EF.Vendor>*@
+@model PagedList.IPagedList<StoreFrontLab.DATA.EF.Vendor>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="col-md-10 offset-1 custom-formatting">
+
+    <div class="loginContainer" style="margin-bottom:2em;">
+        <div class="row">
+            <div class="col-md-6" style="padding-top:2em;">
+                <strong>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</strong>
+            </div>
+            <div class="col-md-6 text-right">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
+        </div>
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().VendorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().ContactName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().PhoneNumber)
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th></th>
+            }
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.VendorID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.VendorID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.VendorID })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+    </div>

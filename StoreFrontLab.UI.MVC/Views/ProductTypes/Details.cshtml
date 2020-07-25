@@ -1,0 +1,27 @@
+﻿@model StoreFrontLab.DATA.EF.ProductType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="col-md-10 offset-1 custom-formatting">
+
+    <h4>@Html.DisplayFor(model => model.TypeName)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeName)
+        </dd>
+
+    </dl>
+    <p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductType1 }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+</div>
+

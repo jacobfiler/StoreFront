@@ -1,0 +1,46 @@
+﻿@model IEnumerable<StoreFrontLab.DATA.EF.ProductType>
+
+@{
+    ViewBag.Title = "Product Types";
+}
+
+
+<div class="col-md-10 offset-1 custom-formatting">
+    <h2>@ViewBag.Title</h2>
+    @if (User.IsInRole("Admin"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th></th>
+            }
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeName)
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ProductType1 }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ProductType1 }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ProductType1 })
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+    </div>
